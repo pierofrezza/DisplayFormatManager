@@ -149,6 +149,8 @@ DisplayFormatManager 1.0.0 requires:
 - **macOS 13 Ventura or later**
 - **Apple Silicon Mac**
 
+> **Note:** DisplayFormatManager does not support managing Apple displays, whether built-in or external. Its analysis and control features are intended for compatible third-party external displays.
+
 The actual availability of formats, sampling modes, HDR, high refresh rates, and Adaptive Sync / VRR depends on the capabilities of the display, the connection being used, and the modes macOS actually exposes.
 
 DisplayFormatManager does not create unsupported display modes: it analyzes and controls what is genuinely available in the current configuration.
