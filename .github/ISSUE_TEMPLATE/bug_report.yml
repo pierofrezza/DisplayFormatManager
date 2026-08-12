@@ -1,0 +1,98 @@
+name: Bug report
+description: Report a problem or unexpected display behavior
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue. Display configurations can vary a lot, so the details below are especially useful.
+
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition
+      options:
+        - DisplayFormatManager Base
+        - DisplayFormatManager Pro
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: DisplayFormatManager version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "e.g. macOS 26.0"
+    validations:
+      required: true
+
+  - type: input
+    id: mac
+    attributes:
+      label: Mac model
+      placeholder: "e.g. MacBook Pro 16-inch, M1 Max"
+    validations:
+      required: true
+
+  - type: input
+    id: display
+    attributes:
+      label: Display
+      placeholder: "Manufacturer and model"
+    validations:
+      required: true
+
+  - type: input
+    id: connection
+    attributes:
+      label: Connection
+      placeholder: "e.g. USB-C to DisplayPort, HDMI, dock/adapter model"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem and the steps that reproduce it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: false
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Relevant display configuration
+      description: Include resolution, scaling, refresh rate, SDR/HDR, sampling, Adaptive Sync / VRR, or anything else relevant.
+    validations:
+      required: false
+
+  - type: textarea
+    id: report
+    attributes:
+      label: DisplayFormatManager report
+      description: If possible, attach or paste a report exported by DisplayFormatManager.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional information
+      description: Screenshots, logs or anything else that may help.
+    validations:
+      required: false
