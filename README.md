@@ -141,6 +141,8 @@ Entrambe le edizioni possono esportare un report della configurazione rilevata. 
 - **macOS 13 Ventura o successivo**
 - **Mac con Apple Silicon**
 
+> **Nota:** DisplayFormatManager non supporta la gestione dei display Apple, né integrati né esterni. Le funzioni di analisi e controllo sono destinate ai display esterni di terze parti compatibili.
+
 Le modalità effettivamente disponibili dipendono dal display, dal collegamento utilizzato, dagli adattatori o dock eventualmente presenti e da ciò che macOS espone per quella specifica configurazione.
 
 DisplayFormatManager **non crea modalità non supportate** dal display.
@@ -312,6 +314,8 @@ Both editions can export a report containing the detected display configuration.
 
 - **macOS 13 Ventura or later**
 - **Apple Silicon Mac**
+
+> **Note:** DisplayFormatManager does not support managing Apple displays, whether built-in or external. Its analysis and control features are intended for compatible third-party external displays.
 
 The modes actually available depend on the display, the connection being used, any adapter or dock in the chain, and what macOS exposes for that specific configuration.
 
