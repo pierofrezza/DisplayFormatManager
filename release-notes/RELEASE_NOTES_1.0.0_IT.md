@@ -1,6 +1,6 @@
 # DisplayFormatManager 1.0.0
 
-![DisplayFormatManager Pro 1.0.0](assets/screenshot-it.png)
+![DisplayFormatManager Pro 1.0.0](../../blob/main/assets/screenshot-it.png)
 
 **12 agosto 2026 · macOS 13 Ventura o successivo · Mac con Apple Silicon**
 
