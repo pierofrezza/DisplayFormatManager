@@ -182,8 +182,8 @@ Se trovi un comportamento particolare, una configurazione insolita o qualcosa ch
 
 ## Release notes
 
-- [Note di rilascio 1.0.0 — Italiano](RELEASE_NOTES_1.0.0_IT.md)
-- [Release notes 1.0.0 — English](RELEASE_NOTES_1.0.0_EN.md)
+- [Note di rilascio 1.1.0 — Italiano](release-notes/RELEASE_NOTES_1.1.0_IT.md)
+- [Release notes 1.1.0 — English](release-notes/RELEASE_NOTES_1.1.0_EN.md)
 
 ## Licenza
 
@@ -356,8 +356,8 @@ If you encounter unusual behavior, a particular configuration, or something that
 
 ## Release notes
 
-- [Note di rilascio 1.0.0 — Italiano](RELEASE_NOTES_1.0.0_IT.md)
-- [Release notes 1.0.0 — English](RELEASE_NOTES_1.0.0_EN.md)
+- [Note di rilascio 1.1.0 — Italiano](release-notes/RELEASE_NOTES_1.1.0_IT.md)
+- [Release notes 1.1.0 — English](release-notes/RELEASE_NOTES_1.1.0_EN.md)
 
 ## License
 
