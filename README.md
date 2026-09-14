@@ -27,7 +27,7 @@ macOS normalmente decide autonomamente formato video, campionamento e altri para
 
 In attesa che Apple risolva definitivamente questi comportamenti, DisplayFormatManager prova a **metterci una toppa**. 😁
 
-L'app permette di vedere il formato realmente utilizzato, intervenire sulle modalità disponibili, verificare il risultato e, quando necessario, mantenerlo nel tempo attraverso profili persistenti.
+L'app permette di vedere il formato realmente utilizzato, intervenire sulle modalità disponibili, verificare il risultato e, quando necessario, mantenerlo nel tempo attraverso profili persistenti. La versione Pro può inoltre analizzare in modo più approfondito il collegamento video, distinguendo ciò che viene trasportato sul lato DisplayPort dal **formato finale/downstream rilevato** e rilevando, quando disponibile, l'uso effettivo del **Display Stream Compression (DSC)**.
 
 <p align="center">
   <img src="assets/screenshot-it.png" width="850" alt="DisplayFormatManager Pro in italiano">
@@ -43,6 +43,7 @@ Permette di:
 - visualizzare il formato e il campionamento realmente utilizzati da macOS;
 - analizzare risoluzione, scaling e frequenza di aggiornamento;
 - vedere la **connessione fisica** del display, ad esempio HDMI o DisplayPort;
+- riconoscere correttamente le famiglie SDR/HDR esposte da macOS, inclusi Dolby Vision e Dolby Vision Low Latency quando disponibili;
 - scegliere tra i formati compatibili disponibili per il timing corrente;
 - provare temporaneamente una modifica prima di confermarla;
 - effettuare automaticamente il rollback se la modifica non viene mantenuta;
@@ -71,6 +72,10 @@ In più permette di:
 - filtrare le modalità di scaling tra **1× e HiDPI**;
 - filtrare separatamente le modalità tra **Standard e Avanzate**;
 - visualizzare informazioni più tecniche tramite l'apposito controllo con l'**occhio**;
+- analizzare il collegamento DisplayPort negoziato, inclusi lane, link rate, banda disponibile, utilizzo e margine;
+- rilevare lo stato live del **DSC** e, quando disponibile, mostrarne i principali parametri tecnici;
+- distinguere il **formato sorgente DisplayPort** dal formato finale/downstream nelle catene con adattatori, dock o bridge;
+- mostrare capacità HDMI dichiarate tramite EDID, tra cui TMDS, SCDC, FRL e blocchi VSDB/HF-VSDB quando disponibili;
 - memorizzare e ripristinare in modo più completo lo stato originale del display;
 - esportare e importare i profili tramite file `.dfmprofile`;
 - esportare più profili nello stesso preset;
@@ -83,6 +88,7 @@ In più permette di:
 | Formato e sampling effettivi | ✅ | ✅ |
 | Risoluzione, scaling e refresh | ✅ | ✅ |
 | Connessione fisica HDMI / DisplayPort | ✅ | ✅ |
+| Riconoscimento SDR / HDR / Dolby Vision | ✅ | ✅ |
 | Test Card | ✅ | ✅ |
 | Report | ✅ | ✅ |
 | Sezioni collassabili | ✅ | ✅ |
@@ -95,6 +101,10 @@ In più permette di:
 | Filtri 1× / HiDPI | — | ✅ |
 | Filtri Standard / Avanzate | — | ✅ |
 | Informazioni tecniche aggiuntive | — | ✅ |
+| Diagnostica DisplayPort e banda | — | ✅ |
+| Diagnostica live DSC | — | ✅ |
+| Formato DP sorgente vs downstream | — | ✅ |
+| Capacità HDMI selezionate da EDID | — | ✅ |
 | Export / import `.dfmprofile` | — | ✅ |
 | Preset multiprofilo | — | ✅ |
 | Importazione selettiva | — | ✅ |
@@ -135,6 +145,8 @@ Base e Pro includono una **Test Card integrata** per verificare direttamente sul
 ## Report
 
 Entrambe le edizioni possono esportare un report della configurazione rilevata. Il contenuto varia in base alle capacità dell'edizione utilizzata.
+
+Nella versione Pro il report può includere anche informazioni avanzate sul percorso video, come il collegamento DisplayPort negoziato, banda e margine disponibili, stato e parametri del DSC, formato sorgente DisplayPort separato dal formato finale/downstream e capacità HDMI dichiarate tramite EDID.
 
 ## Compatibilità
 
@@ -182,6 +194,8 @@ Se trovi un comportamento particolare, una configurazione insolita o qualcosa ch
 
 ## Release notes
 
+- [Note di rilascio 1.2.0 — Italiano](release-notes/RELEASE_NOTES_1.2.0_IT.md)
+- [Release notes 1.2.0 — English](release-notes/RELEASE_NOTES_1.2.0_EN.md)
 - [Note di rilascio 1.1.0 — Italiano](release-notes/RELEASE_NOTES_1.1.0_IT.md)
 - [Release notes 1.1.0 — English](release-notes/RELEASE_NOTES_1.1.0_EN.md)
 
@@ -201,7 +215,7 @@ macOS normally chooses video format, sampling, and other connection parameters a
 
 While waiting and hoping for Apple to address these behaviors once and for all, DisplayFormatManager tries to **put a patch over the problem**. 😁
 
-It lets you inspect the format actually being used, work with the available modes, verify the result, and maintain a chosen configuration over time through persistent profiles.
+It lets you inspect the format actually being used, work with the available modes, verify the result, and maintain a chosen configuration over time through persistent profiles. The Pro edition can also inspect the video connection in greater depth, separating what is carried over the DisplayPort side from the **detected final/downstream format** and detecting the actual use of **Display Stream Compression (DSC)** when available.
 
 <p align="center">
   <img src="assets/screenshot-en.png" width="850" alt="DisplayFormatManager Pro in English">
@@ -217,6 +231,7 @@ It can:
 - show the format and sampling actually used by macOS;
 - analyze resolution, scaling, and refresh rate;
 - show the display's **physical connection**, such as HDMI or DisplayPort;
+- correctly recognize SDR/HDR families exposed by macOS, including Dolby Vision and Dolby Vision Low Latency when available;
 - choose among compatible formats available for the current timing;
 - temporarily test a change before confirming it;
 - automatically roll back when a change is not kept;
@@ -245,6 +260,10 @@ It additionally supports:
 - filtering scaling modes between **1× and HiDPI**;
 - independently filtering modes between **Standard and Advanced**;
 - displaying additional technical information through the dedicated **eye** control;
+- analyzing the negotiated DisplayPort link, including lane count, link rate, available bandwidth, usage and margin;
+- detecting the live state of **DSC** and, when available, showing its main technical parameters;
+- distinguishing the **DisplayPort source format** from the final/downstream format in connection paths that include adapters, docks or bridges;
+- showing HDMI capabilities reported through EDID, including TMDS, SCDC, FRL and VSDB/HF-VSDB blocks when available;
 - more completely capturing and restoring the display's original state;
 - exporting and importing profiles through `.dfmprofile` files;
 - exporting multiple profiles in a single preset;
@@ -257,6 +276,7 @@ It additionally supports:
 | Actual format and sampling | ✅ | ✅ |
 | Resolution, scaling, refresh | ✅ | ✅ |
 | Physical HDMI / DisplayPort connection | ✅ | ✅ |
+| SDR / HDR / Dolby Vision recognition | ✅ | ✅ |
 | Test Card | ✅ | ✅ |
 | Reports | ✅ | ✅ |
 | Collapsible sections | ✅ | ✅ |
@@ -269,6 +289,10 @@ It additionally supports:
 | 1× / HiDPI filters | — | ✅ |
 | Standard / Advanced filters | — | ✅ |
 | Additional technical information | — | ✅ |
+| DisplayPort link and bandwidth diagnostics | — | ✅ |
+| Live DSC diagnostics | — | ✅ |
+| DP source format vs downstream | — | ✅ |
+| Selected HDMI capabilities from EDID | — | ✅ |
 | `.dfmprofile` export / import | — | ✅ |
 | Multi-profile presets | — | ✅ |
 | Selective import | — | ✅ |
@@ -309,6 +333,8 @@ Both Base and Pro include an integrated **Test Card** for visually checking the 
 ## Reports
 
 Both editions can export a report containing the detected display configuration. The contents reflect the capabilities of the edition in use.
+
+In Pro, the report can also include advanced information about the video path, such as the negotiated DisplayPort link, available bandwidth and margin, DSC state and parameters, DisplayPort source format separated from the final/downstream format, and HDMI capabilities reported through EDID.
 
 ## Compatibility
 
@@ -356,6 +382,8 @@ If you encounter unusual behavior, a particular configuration, or something that
 
 ## Release notes
 
+- [Note di rilascio 1.2.0 — Italiano](release-notes/RELEASE_NOTES_1.2.0_IT.md)
+- [Release notes 1.2.0 — English](release-notes/RELEASE_NOTES_1.2.0_EN.md)
 - [Note di rilascio 1.1.0 — Italiano](release-notes/RELEASE_NOTES_1.1.0_IT.md)
 - [Release notes 1.1.0 — English](release-notes/RELEASE_NOTES_1.1.0_EN.md)
 
