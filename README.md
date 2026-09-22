@@ -7,6 +7,7 @@
 </p>
 
 <p align="center">
+  <strong>Controlla il formato video che macOS usa realmente con il tuo display esterno.</strong><br>
   <strong>Take control of the video format macOS actually uses with your external display.</strong>
 </p>
 
@@ -27,7 +28,7 @@ macOS normalmente decide autonomamente formato video, campionamento e altri para
 
 In attesa che Apple risolva definitivamente questi comportamenti, DisplayFormatManager prova a **metterci una toppa**. 😁
 
-L'app permette di vedere il formato realmente utilizzato, intervenire sulle modalità disponibili, verificare il risultato e, quando necessario, mantenerlo nel tempo attraverso profili persistenti. La versione Pro può inoltre analizzare in modo più approfondito il collegamento video, distinguendo ciò che viene trasportato sul lato DisplayPort dal **formato finale/downstream rilevato** e rilevando, quando disponibile, l'uso effettivo del **Display Stream Compression (DSC)**.
+L'app permette di vedere il formato realmente utilizzato, intervenire sulle modalità disponibili, verificare il risultato e, quando necessario, mantenerlo nel tempo attraverso profili persistenti. Il report tecnico è disponibile anche come sheet interattiva espandibile/comprimibile. La versione Pro può inoltre analizzare in modo più approfondito il collegamento video, distinguendo ciò che viene trasportato sul lato DisplayPort dal **formato finale/downstream rilevato**, rilevando l'uso effettivo del **Display Stream Compression (DSC)** e, quando disponibili, mostrando informazioni DPCD, EDID/CTA, HDMI e HDMI-CEC.
 
 <p align="center">
   <img src="assets/screenshot-it.png" width="850" alt="DisplayFormatManager Pro in italiano">
@@ -50,8 +51,10 @@ Permette di:
 - creare e gestire **profili persistenti locali**;
 - sospendere e riattivare i profili;
 - rilevare e mostrare Adaptive Sync / VRR quando è attivo;
+- controllare accensione e stand-by tramite **HDMI-CEC** quando DFM rileva un endpoint operativo e associabile in sicurezza al display;
 - utilizzare la **Test Card integrata**;
-- esportare un report della configurazione rilevata;
+- consultare il **report tecnico** in una sheet espandibile/comprimibile;
+- esportare lo stesso report in formato TXT;
 - organizzare le informazioni tramite sezioni collassabili.
 
 La Base **non cambia la natura del timing attivo**: se il display è in SDR rimane in SDR; se è in HDR rimane in HDR.
@@ -73,9 +76,13 @@ In più permette di:
 - filtrare separatamente le modalità tra **Standard e Avanzate**;
 - visualizzare informazioni più tecniche tramite l'apposito controllo con l'**occhio**;
 - analizzare il collegamento DisplayPort negoziato, inclusi lane, link rate, banda disponibile, utilizzo e margine;
+- leggere in modo read-only le informazioni **DPCD** associabili al display, inclusi receiver capabilities, configurazione corrente e stato delle lane;
 - rilevare lo stato live del **DSC** e, quando disponibile, mostrarne i principali parametri tecnici;
 - distinguere il **formato sorgente DisplayPort** dal formato finale/downstream nelle catene con adattatori, dock o bridge;
+- analizzare in modo strutturato **EDID e CTA**, inclusi timing, HDR Static Metadata, Colorimetry e blocchi vendor-specific supportati;
 - mostrare capacità HDMI dichiarate tramite EDID, tra cui TMDS, SCDC, FRL e blocchi VSDB/HF-VSDB quando disponibili;
+- mostrare i dettagli AMD **FreeSync VSDB v1** quando dichiarati dal display;
+- includere nel report lo stato **HDMI-CEC** sui percorsi compatibili, mantenendo separati capacità, stato operativo e controllo Power;
 - memorizzare e ripristinare in modo più completo lo stato originale del display;
 - esportare e importare i profili tramite file `.dfmprofile`;
 - esportare più profili nello stesso preset;
@@ -90,11 +97,13 @@ In più permette di:
 | Connessione fisica HDMI / DisplayPort | ✅ | ✅ |
 | Riconoscimento SDR / HDR / Dolby Vision | ✅ | ✅ |
 | Test Card | ✅ | ✅ |
-| Report | ✅ | ✅ |
+| Report tecnico + esportazione TXT | ✅ | ✅ |
+| Sheet report espandibile/comprimibile | ✅ | ✅ |
 | Sezioni collassabili | ✅ | ✅ |
 | Applicazione temporanea + rollback | ✅ | ✅ |
 | Profili persistenti | ✅ | ✅ |
 | Adaptive Sync / VRR rilevato | ✅ | ✅ |
+| Power HDMI-CEC su percorsi compatibili | ✅ | ✅ |
 | Cambio SDR ↔ HDR | — | ✅ |
 | Controllo Adaptive Sync / VRR | — | ✅ |
 | Cambio tra timing differenti | — | ✅ |
@@ -102,9 +111,13 @@ In più permette di:
 | Filtri Standard / Avanzate | — | ✅ |
 | Informazioni tecniche aggiuntive | — | ✅ |
 | Diagnostica DisplayPort e banda | — | ✅ |
+| Diagnostica DPCD | — | ✅ |
 | Diagnostica live DSC | — | ✅ |
 | Formato DP sorgente vs downstream | — | ✅ |
+| Diagnostica EDID / CTA strutturata | — | ✅ |
 | Capacità HDMI selezionate da EDID | — | ✅ |
+| Dettagli AMD FreeSync VSDB v1 | — | ✅ |
+| Stato HDMI-CEC nel report | — | ✅ |
 | Export / import `.dfmprofile` | — | ✅ |
 | Preset multiprofilo | — | ✅ |
 | Importazione selettiva | — | ✅ |
@@ -144,9 +157,9 @@ Base e Pro includono una **Test Card integrata** per verificare direttamente sul
 
 ## Report
 
-Entrambe le edizioni possono esportare un report della configurazione rilevata. Il contenuto varia in base alle capacità dell'edizione utilizzata.
+Entrambe le edizioni possono consultare il report tecnico in una **sheet interattiva espandibile/comprimibile** ed esportare lo stesso contenuto in formato TXT. La sheet e il file esportato condividono la stessa sorgente dati logica, così da mantenere coerente la presentazione delle informazioni.
 
-Nella versione Pro il report può includere anche informazioni avanzate sul percorso video, come il collegamento DisplayPort negoziato, banda e margine disponibili, stato e parametri del DSC, formato sorgente DisplayPort separato dal formato finale/downstream e capacità HDMI dichiarate tramite EDID.
+Nella versione Pro il report può includere anche informazioni avanzate sul percorso video, come il collegamento DisplayPort negoziato, dati DPCD, banda e margine disponibili, stato e parametri del DSC, formato sorgente DisplayPort separato dal formato finale/downstream, analisi strutturata EDID/CTA, capacità HDMI, AMD FreeSync VSDB v1 e stato HDMI-CEC quando disponibili.
 
 ## Compatibilità
 
@@ -194,6 +207,8 @@ Se trovi un comportamento particolare, una configurazione insolita o qualcosa ch
 
 ## Release notes
 
+- [Note di rilascio 1.3.0 — Italiano](release-notes/RELEASE_NOTES_1.3.0_IT.md)
+- [Release notes 1.3.0 — English](release-notes/RELEASE_NOTES_1.3.0_EN.md)
 - [Note di rilascio 1.2.0 — Italiano](release-notes/RELEASE_NOTES_1.2.0_IT.md)
 - [Release notes 1.2.0 — English](release-notes/RELEASE_NOTES_1.2.0_EN.md)
 - [Note di rilascio 1.1.0 — Italiano](release-notes/RELEASE_NOTES_1.1.0_IT.md)
@@ -215,7 +230,7 @@ macOS normally chooses video format, sampling, and other connection parameters a
 
 While waiting and hoping for Apple to address these behaviors once and for all, DisplayFormatManager tries to **put a patch over the problem**. 😁
 
-It lets you inspect the format actually being used, work with the available modes, verify the result, and maintain a chosen configuration over time through persistent profiles. The Pro edition can also inspect the video connection in greater depth, separating what is carried over the DisplayPort side from the **detected final/downstream format** and detecting the actual use of **Display Stream Compression (DSC)** when available.
+It lets you inspect the format actually being used, work with the available modes, verify the result, and maintain a chosen configuration over time through persistent profiles. The technical report is also available as an interactive expandable/collapsible sheet. The Pro edition can inspect the video connection in greater depth, separating what is carried over the DisplayPort side from the **detected final/downstream format**, detecting the actual use of **Display Stream Compression (DSC)** and, when available, exposing DPCD, EDID/CTA, HDMI and HDMI-CEC information.
 
 <p align="center">
   <img src="assets/screenshot-en.png" width="850" alt="DisplayFormatManager Pro in English">
@@ -238,8 +253,10 @@ It can:
 - create and manage **local persistent profiles**;
 - suspend and reactivate profiles;
 - detect and display Adaptive Sync / VRR when active;
+- control power and standby through **HDMI-CEC** when DFM detects an operational endpoint that can be safely associated with the display;
 - use the integrated **Test Card**;
-- export a report of the detected configuration;
+- inspect the **technical report** in an expandable/collapsible sheet;
+- export the same report as TXT;
 - organize information into collapsible sections.
 
 Base **does not change the nature of the active timing**: SDR remains SDR, and HDR remains HDR.
@@ -261,9 +278,13 @@ It additionally supports:
 - independently filtering modes between **Standard and Advanced**;
 - displaying additional technical information through the dedicated **eye** control;
 - analyzing the negotiated DisplayPort link, including lane count, link rate, available bandwidth, usage and margin;
+- reading **DPCD** information that can be safely associated with the display, including receiver capabilities, current link configuration and lane status;
 - detecting the live state of **DSC** and, when available, showing its main technical parameters;
 - distinguishing the **DisplayPort source format** from the final/downstream format in connection paths that include adapters, docks or bridges;
+- structurally analyzing **EDID and CTA**, including timings, HDR Static Metadata, Colorimetry and supported vendor-specific blocks;
 - showing HDMI capabilities reported through EDID, including TMDS, SCDC, FRL and VSDB/HF-VSDB blocks when available;
+- showing AMD **FreeSync VSDB v1** details when declared by the display;
+- including **HDMI-CEC** state in the report on compatible paths while keeping capability, operational state and Power control distinct;
 - more completely capturing and restoring the display's original state;
 - exporting and importing profiles through `.dfmprofile` files;
 - exporting multiple profiles in a single preset;
@@ -278,11 +299,13 @@ It additionally supports:
 | Physical HDMI / DisplayPort connection | ✅ | ✅ |
 | SDR / HDR / Dolby Vision recognition | ✅ | ✅ |
 | Test Card | ✅ | ✅ |
-| Reports | ✅ | ✅ |
+| Technical report + TXT export | ✅ | ✅ |
+| Expandable/collapsible report sheet | ✅ | ✅ |
 | Collapsible sections | ✅ | ✅ |
 | Temporary application + rollback | ✅ | ✅ |
 | Persistent profiles | ✅ | ✅ |
 | Adaptive Sync / VRR detection | ✅ | ✅ |
+| HDMI-CEC Power on compatible paths | ✅ | ✅ |
 | SDR ↔ HDR switching | — | ✅ |
 | Adaptive Sync / VRR control | — | ✅ |
 | Switching between different timings | — | ✅ |
@@ -290,9 +313,13 @@ It additionally supports:
 | Standard / Advanced filters | — | ✅ |
 | Additional technical information | — | ✅ |
 | DisplayPort link and bandwidth diagnostics | — | ✅ |
+| DPCD diagnostics | — | ✅ |
 | Live DSC diagnostics | — | ✅ |
 | DP source format vs downstream | — | ✅ |
+| Structured EDID / CTA diagnostics | — | ✅ |
 | Selected HDMI capabilities from EDID | — | ✅ |
+| AMD FreeSync VSDB v1 details | — | ✅ |
+| HDMI-CEC state in reports | — | ✅ |
 | `.dfmprofile` export / import | — | ✅ |
 | Multi-profile presets | — | ✅ |
 | Selective import | — | ✅ |
@@ -332,9 +359,9 @@ Both Base and Pro include an integrated **Test Card** for visually checking the 
 
 ## Reports
 
-Both editions can export a report containing the detected display configuration. The contents reflect the capabilities of the edition in use.
+Both editions can inspect the technical report in an **interactive expandable/collapsible sheet** and export the same content as TXT. The sheet and exported file are backed by the same logical report source so the information stays consistent.
 
-In Pro, the report can also include advanced information about the video path, such as the negotiated DisplayPort link, available bandwidth and margin, DSC state and parameters, DisplayPort source format separated from the final/downstream format, and HDMI capabilities reported through EDID.
+In Pro, the report can also include advanced information about the video path, such as the negotiated DisplayPort link, DPCD data, available bandwidth and margin, DSC state and parameters, DisplayPort source format separated from the final/downstream format, structured EDID/CTA analysis, HDMI capabilities, AMD FreeSync VSDB v1 and HDMI-CEC state when available.
 
 ## Compatibility
 
@@ -382,6 +409,8 @@ If you encounter unusual behavior, a particular configuration, or something that
 
 ## Release notes
 
+- [Note di rilascio 1.3.0 — Italiano](release-notes/RELEASE_NOTES_1.3.0_IT.md)
+- [Release notes 1.3.0 — English](release-notes/RELEASE_NOTES_1.3.0_EN.md)
 - [Note di rilascio 1.2.0 — Italiano](release-notes/RELEASE_NOTES_1.2.0_IT.md)
 - [Release notes 1.2.0 — English](release-notes/RELEASE_NOTES_1.2.0_EN.md)
 - [Note di rilascio 1.1.0 — Italiano](release-notes/RELEASE_NOTES_1.1.0_IT.md)
