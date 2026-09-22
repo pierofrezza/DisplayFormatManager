@@ -28,7 +28,7 @@ macOS normalmente decide autonomamente formato video, campionamento e altri para
 
 In attesa che Apple risolva definitivamente questi comportamenti, DisplayFormatManager prova a **metterci una toppa**. 😁
 
-L'app permette di vedere il formato realmente utilizzato, intervenire sulle modalità disponibili, verificare il risultato e, quando necessario, mantenerlo nel tempo attraverso profili persistenti. Il report tecnico è disponibile anche come sheet interattiva espandibile/comprimibile. La versione Pro può inoltre analizzare in modo più approfondito il collegamento video, distinguendo ciò che viene trasportato sul lato DisplayPort dal **formato finale/downstream rilevato**, rilevando l'uso effettivo del **Display Stream Compression (DSC)** e, quando disponibili, mostrando informazioni DPCD, EDID/CTA, HDMI e HDMI-CEC.
+L'app permette di vedere il formato realmente utilizzato, intervenire sulle modalità disponibili, verificare il risultato e, quando necessario, mantenerlo nel tempo attraverso profili persistenti. Entrambe le edizioni possono inoltre mostrare un **riepilogo opzionale nella barra menu di macOS**, con stato dei display, profili persistenti e azioni rapide. Il report tecnico è disponibile anche come sheet interattiva espandibile/comprimibile. La versione Pro può inoltre analizzare in modo più approfondito il collegamento video, distinguendo ciò che viene trasportato sul lato DisplayPort dal **formato finale/downstream rilevato**, rilevando l'uso effettivo del **Display Stream Compression (DSC)** e, quando disponibili, mostrando informazioni DPCD, EDID/CTA, HDMI e HDMI-CEC.
 
 <p align="center">
   <img src="assets/screenshot-it.png" width="850" alt="DisplayFormatManager Pro in italiano">
@@ -53,6 +53,8 @@ Permette di:
 - rilevare e mostrare Adaptive Sync / VRR quando è attivo;
 - controllare accensione e stand-by tramite **HDMI-CEC** quando DFM rileva un endpoint operativo e associabile in sicurezza al display;
 - utilizzare la **Test Card integrata**;
+- utilizzare il **riepilogo opzionale nella barra menu**, con stato display, profili persistenti, Test Card e riaccensione HDMI-CEC sui percorsi compatibili;
+- avviare opzionalmente DFM al login direttamente nella barra menu, senza aprire automaticamente la finestra principale;
 - consultare il **report tecnico** in una sheet espandibile/comprimibile;
 - esportare lo stesso report in formato TXT;
 - organizzare le informazioni tramite sezioni collassabili.
@@ -97,6 +99,8 @@ In più permette di:
 | Connessione fisica HDMI / DisplayPort | ✅ | ✅ |
 | Riconoscimento SDR / HDR / Dolby Vision | ✅ | ✅ |
 | Test Card | ✅ | ✅ |
+| Riepilogo opzionale nella barra menu | ✅ | ✅ |
+| Avvio opzionale al login dalla barra menu | ✅ | ✅ |
 | Report tecnico + esportazione TXT | ✅ | ✅ |
 | Sheet report espandibile/comprimibile | ✅ | ✅ |
 | Sezioni collassabili | ✅ | ✅ |
@@ -151,13 +155,21 @@ La Pro permette invece di esportarli e importarli attraverso il formato:
 
 Un preset Pro può contenere un singolo profilo, più profili e configurazioni da importare selettivamente. I profili importati vengono inizialmente mantenuti sospesi, lasciando all'utente la scelta di quando attivarli.
 
+## Barra menu
+
+Base e Pro possono mostrare opzionalmente DisplayFormatManager nella **barra menu di macOS**.
+
+Il pannello è pensato come riepilogo rapido, non come sostituto della finestra principale. Può mostrare i display collegati con informazioni sintetiche sul segnale e sulla connessione, i display compatibili in standby, lo stato dei profili persistenti e un accesso rapido alla Test Card.
+
+Quando DFM rileva un endpoint HDMI-CEC operativo, un display in standby può essere riacceso direttamente dalla barra menu. È inoltre possibile configurare l'**avvio al login**: in questo caso DFM parte nella barra menu senza aprire automaticamente la finestra principale e senza rimanere nel Dock.
+
 ## Test Card
 
 Base e Pro includono una **Test Card integrata** per verificare direttamente sul display la resa della configurazione applicata.
 
 ## Report
 
-Entrambe le edizioni possono consultare il report tecnico in una **sheet interattiva espandibile/comprimibile** ed esportare lo stesso contenuto in formato TXT. La sheet e il file esportato condividono la stessa sorgente dati logica, così da mantenere coerente la presentazione delle informazioni.
+Entrambe le edizioni possono consultare il report tecnico in una **sheet interattiva espandibile/comprimibile** ed esportare lo stesso contenuto in formato TXT. La sheet e il file esportato condividono la stessa sorgente dati logica, così da mantenere coerente la presentazione delle informazioni. Dalla versione 1.4.0 il report include esplicitamente anche **versione e numero di build** dell'app.
 
 Nella versione Pro il report può includere anche informazioni avanzate sul percorso video, come il collegamento DisplayPort negoziato, dati DPCD, banda e margine disponibili, stato e parametri del DSC, formato sorgente DisplayPort separato dal formato finale/downstream, analisi strutturata EDID/CTA, capacità HDMI, AMD FreeSync VSDB v1 e stato HDMI-CEC quando disponibili.
 
@@ -207,6 +219,8 @@ Se trovi un comportamento particolare, una configurazione insolita o qualcosa ch
 
 ## Release notes
 
+- [Note di rilascio 1.4.0 — Italiano](release-notes/RELEASE_NOTES_1.4.0_IT.md)
+- [Release notes 1.4.0 — English](release-notes/RELEASE_NOTES_1.4.0_EN.md)
 - [Note di rilascio 1.3.0 — Italiano](release-notes/RELEASE_NOTES_1.3.0_IT.md)
 - [Release notes 1.3.0 — English](release-notes/RELEASE_NOTES_1.3.0_EN.md)
 - [Note di rilascio 1.2.0 — Italiano](release-notes/RELEASE_NOTES_1.2.0_IT.md)
@@ -230,7 +244,7 @@ macOS normally chooses video format, sampling, and other connection parameters a
 
 While waiting and hoping for Apple to address these behaviors once and for all, DisplayFormatManager tries to **put a patch over the problem**. 😁
 
-It lets you inspect the format actually being used, work with the available modes, verify the result, and maintain a chosen configuration over time through persistent profiles. The technical report is also available as an interactive expandable/collapsible sheet. The Pro edition can inspect the video connection in greater depth, separating what is carried over the DisplayPort side from the **detected final/downstream format**, detecting the actual use of **Display Stream Compression (DSC)** and, when available, exposing DPCD, EDID/CTA, HDMI and HDMI-CEC information.
+It lets you inspect the format actually being used, work with the available modes, verify the result, and maintain a chosen configuration over time through persistent profiles. Both editions can also provide an **optional macOS menu bar overview** with display status, persistent profiles and quick actions. The technical report is also available as an interactive expandable/collapsible sheet. The Pro edition can inspect the video connection in greater depth, separating what is carried over the DisplayPort side from the **detected final/downstream format**, detecting the actual use of **Display Stream Compression (DSC)** and, when available, exposing DPCD, EDID/CTA, HDMI and HDMI-CEC information.
 
 <p align="center">
   <img src="assets/screenshot-en.png" width="850" alt="DisplayFormatManager Pro in English">
@@ -255,6 +269,8 @@ It can:
 - detect and display Adaptive Sync / VRR when active;
 - control power and standby through **HDMI-CEC** when DFM detects an operational endpoint that can be safely associated with the display;
 - use the integrated **Test Card**;
+- use the **optional menu bar overview** with display status, persistent profiles, Test Card and HDMI-CEC wake on compatible paths;
+- optionally launch DFM at login directly in the menu bar without automatically opening the main window;
 - inspect the **technical report** in an expandable/collapsible sheet;
 - export the same report as TXT;
 - organize information into collapsible sections.
@@ -299,6 +315,8 @@ It additionally supports:
 | Physical HDMI / DisplayPort connection | ✅ | ✅ |
 | SDR / HDR / Dolby Vision recognition | ✅ | ✅ |
 | Test Card | ✅ | ✅ |
+| Optional menu bar overview | ✅ | ✅ |
+| Optional launch at login from the menu bar | ✅ | ✅ |
 | Technical report + TXT export | ✅ | ✅ |
 | Expandable/collapsible report sheet | ✅ | ✅ |
 | Collapsible sections | ✅ | ✅ |
@@ -353,13 +371,21 @@ Pro makes them portable through the format:
 
 A Pro preset can contain one profile, multiple profiles, and configurations that can be selectively imported. Imported profiles are initially kept suspended, leaving the user in control of when to activate them.
 
+## Menu bar
+
+Both Base and Pro can optionally show DisplayFormatManager in the **macOS menu bar**.
+
+The panel is designed as a quick overview rather than a replacement for the main window. It can show connected displays with a concise signal/connection summary, compatible displays in standby, persistent-profile status and quick Test Card access.
+
+When DFM detects an operational HDMI-CEC endpoint, a display in standby can be woken directly from the menu bar. **Launch at login** can also be enabled: DFM then starts in the menu bar without automatically opening the main window or remaining in the Dock.
+
 ## Test Card
 
 Both Base and Pro include an integrated **Test Card** for visually checking the result of an applied display configuration.
 
 ## Reports
 
-Both editions can inspect the technical report in an **interactive expandable/collapsible sheet** and export the same content as TXT. The sheet and exported file are backed by the same logical report source so the information stays consistent.
+Both editions can inspect the technical report in an **interactive expandable/collapsible sheet** and export the same content as TXT. The sheet and exported file are backed by the same logical report source so the information stays consistent. Starting with version 1.4.0, the report also explicitly includes the app **version and build number**.
 
 In Pro, the report can also include advanced information about the video path, such as the negotiated DisplayPort link, DPCD data, available bandwidth and margin, DSC state and parameters, DisplayPort source format separated from the final/downstream format, structured EDID/CTA analysis, HDMI capabilities, AMD FreeSync VSDB v1 and HDMI-CEC state when available.
 
@@ -409,6 +435,8 @@ If you encounter unusual behavior, a particular configuration, or something that
 
 ## Release notes
 
+- [Note di rilascio 1.4.0 — Italiano](release-notes/RELEASE_NOTES_1.4.0_IT.md)
+- [Release notes 1.4.0 — English](release-notes/RELEASE_NOTES_1.4.0_EN.md)
 - [Note di rilascio 1.3.0 — Italiano](release-notes/RELEASE_NOTES_1.3.0_IT.md)
 - [Release notes 1.3.0 — English](release-notes/RELEASE_NOTES_1.3.0_EN.md)
 - [Note di rilascio 1.2.0 — Italiano](release-notes/RELEASE_NOTES_1.2.0_IT.md)
